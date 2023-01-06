@@ -1,6 +1,5 @@
 package com.example.dummylistingapp.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,10 @@ import com.example.dummylistingapp.R
 import com.example.dummylistingapp.model.Item
 import com.squareup.picasso.Picasso
 
-class RecyclerAdapter(var context: Context, val itemList: ArrayList<Item>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(var itemList: ArrayList<Item>, private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v){
+    class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val itemTitle: TextView
         val itemSubtitle: TextView
         val itemImg: ImageView
@@ -27,6 +27,12 @@ class RecyclerAdapter(var context: Context, val itemList: ArrayList<Item>) : Rec
         }
     }
 
+    // An interface that specifies listener’s behaviour.
+    // OnItemClickListener used for going to a particular activity when a particular row is touched.
+    interface OnItemClickListener {
+        fun onItemClick(item: Item)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_list, parent, false)
@@ -37,8 +43,12 @@ class RecyclerAdapter(var context: Context, val itemList: ArrayList<Item>) : Rec
         val newList = itemList[position]
         holder.itemTitle.text = newList.itemTitle
         holder.itemSubtitle.text = newList.itemSubtitle
-        Picasso.get().load(newList.itemImg).into(holder.itemImg);
+        Picasso.get().load(newList.itemImg).into(holder.itemImg)
         holder.itemDesc.text = newList.itemDesc
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(newList)
+        }
     }
 
     override fun getItemCount(): Int {
