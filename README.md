@@ -4,7 +4,7 @@ Dummy Listing App is using RecyclerView Adapter to display dynamic list of item 
 
 ## App Screenshot
 ### Listing Item
-
+![image](https://user-images.githubusercontent.com/105049111/210950924-fb5caea1-a075-4be7-9415-68ed48645c6c.png)
 Show all items within a list.
 
 ### Detailed Item 
