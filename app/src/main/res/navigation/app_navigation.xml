@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.dummylistingapp.ListFragment"
+        android:name="com.example.dummylistingapp.ui.ListFragment"
         tools:layout="@layout/fragment_list">
 
         <action
@@ -16,14 +16,32 @@
         <argument
             android:name="item"
             app:argType="com.example.dummylistingapp.model.Item" />
+        <action
+            android:id="@+id/action_listFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.dummylistingapp.DetailFragment"
+        android:name="com.example.dummylistingapp.ui.DetailFragment"
         tools:layout="@layout/fragment_detail">
         <action
             android:id="@+id/action_detailFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+        <argument
+            android:name="item"
+            app:argType="com.example.dummylistingapp.model.Item" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.dummylistingapp.ui.AddItemFragment"
+        tools:layout="@layout/fragment_add_item">
+        <action
+            android:id="@+id/action_addItemFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
 

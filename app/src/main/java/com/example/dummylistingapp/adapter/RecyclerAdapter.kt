@@ -10,7 +10,7 @@ import com.example.dummylistingapp.R
 import com.example.dummylistingapp.model.Item
 import com.squareup.picasso.Picasso
 
-class RecyclerAdapter(var itemList: ArrayList<Item>, private val listener: OnItemClickListener) :
+class RecyclerAdapter(private var itemList: List<Item>, private val listener: OnItemClickListener) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
