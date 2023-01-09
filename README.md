@@ -13,12 +13,18 @@ Show all items within a list.
 
 Display the selected item details which are item image, item title, item subtitle and item description.
 
+### Add Item 
+![image](https://user-images.githubusercontent.com/105049111/211280203-9c24d715-029a-481f-bb5b-8f912c8be1df.png)
+
+Adding item details which are item image, item title, item subtitle and item description into database.
+
 
 
 ## Architecture
 
 * Parcelable Object
 * Navigation Component
+* ROOM Database
 
 ## Language
 * Kotlin
