@@ -16,9 +16,6 @@
         <argument
             android:name="item"
             app:argType="com.example.dummylistingapp.model.Item" />
-        <action
-            android:id="@+id/action_listFragment_to_addItemFragment"
-            app:destination="@id/addItemFragment" />
     </fragment>
 
     <fragment
@@ -28,21 +25,9 @@
         <action
             android:id="@+id/action_detailFragment_to_listFragment"
             app:destination="@id/listFragment" />
-        <action
-            android:id="@+id/action_detailFragment_to_addItemFragment"
-            app:destination="@id/addItemFragment" />
         <argument
             android:name="item"
             app:argType="com.example.dummylistingapp.model.Item" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/addItemFragment"
-        android:name="com.example.dummylistingapp.ui.AddItemFragment"
-        tools:layout="@layout/fragment_add_item">
-        <action
-            android:id="@+id/action_addItemFragment_to_listFragment"
-            app:destination="@id/listFragment" />
     </fragment>
 
 </navigation>
