@@ -4,40 +4,39 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.dummylistingapp.R
+import com.example.dummylistingapp.databinding.FragmentDetailBinding
 import com.example.dummylistingapp.model.Item
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 
+private const val cItem = "ITEM"
+
 class DetailFragment : Fragment() {
+
+    private lateinit var dataBinding: FragmentDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+    ): View {
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         var itemModel: Item? = null
-        itemModel = arguments?.getParcelable("item")
+        itemModel = arguments?.getParcelable(cItem)
 
-        val itemTitle = view.findViewById<TextView>(R.id.item_title)
-        val itemSubtitle = view.findViewById<TextView>(R.id.item_subtitle)
-        val itemImg = view.findViewById<ImageView>(R.id.item_image)
-        val itemDesc = view.findViewById<TextView>(R.id.item_desc)
-
-        itemTitle.text = itemModel?.itemTitle.toString()
-        itemSubtitle.text = itemModel?.itemSubtitle.toString()
-        Picasso.get().load(itemModel?.itemImg).into(itemImg)
-        itemDesc.text = itemModel?.itemDesc.toString()
+        itemModel?.apply {
+            dataBinding.itemTitle.text = itemTitle.toString()
+            dataBinding.itemSubtitle.text = itemSubtitle.toString()
+            Picasso.get().load(itemImg).into(dataBinding.itemImage)
+            dataBinding.itemDesc.text = itemDesc.toString()
+        }
     }
 }
