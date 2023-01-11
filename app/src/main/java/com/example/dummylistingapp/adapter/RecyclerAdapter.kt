@@ -1,5 +1,6 @@
 package com.example.dummylistingapp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,7 +8,10 @@ import com.example.dummylistingapp.databinding.ItemListBinding
 import com.example.dummylistingapp.model.Item
 import com.squareup.picasso.Picasso
 
-class RecyclerAdapter(private var itemList: ArrayList<Item>, private val listener: OnItemClickListener) :
+class RecyclerAdapter(
+    private var itemList: ArrayList<Item>,
+    private val listener: OnItemClickListener
+) :
     RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemListBinding) :
@@ -44,8 +48,10 @@ class RecyclerAdapter(private var itemList: ArrayList<Item>, private val listene
         return itemList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun filterList(filteredList: ArrayList<Item>) {
         itemList = filteredList
+        //Update adapter
         notifyDataSetChanged()
     }
 }

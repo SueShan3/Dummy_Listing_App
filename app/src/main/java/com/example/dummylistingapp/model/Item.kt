@@ -4,14 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-//@Parcelize
-//data class Item(
-//    var itemTitle: String? = null,
-//    var itemSubtitle: String? = null,
-//    var itemImg: String? = null,
-//    var itemDesc: String? = null
-//) : Parcelable
-
 @Parcelize
 data class Item(
     @SerializedName("Title")
@@ -32,7 +24,7 @@ data class Item(
     var writer: String? = null,
     @SerializedName("Actors")
     var itemSubtitle: String? = null,
-    @SerializedName("Plot")
+    @SerializedName("Poster")
     var itemImg: String? = null,
     @SerializedName("Language")
     var language: String? = null,
@@ -40,28 +32,8 @@ data class Item(
     var country: String? = null,
     @SerializedName("Awards")
     var awards: String? = null,
-    @SerializedName("Poster")
+    @SerializedName("Plot")
     var itemDesc: String? = null,
     @SerializedName("Ratings")
     var ratings: List<Ratings>? = null,
-    @SerializedName("Metascore")
-    var metaScore: String? = null,
-    @SerializedName("imdbRating")
-    var imdbRating: String? = null,
-    @SerializedName("imdbVotes")
-    var imdbVotes: String? = null,
-    @SerializedName("imdbID")
-    var imdbId: String? = null,
-    @SerializedName("Type")
-    var type: String? = null,
-    @SerializedName("DVD")
-    var dvd: String? = null,
-    @SerializedName("BoxOffice")
-    var boxOffice: String? = null,
-    @SerializedName("Production")
-    var production: String? = null,
-    @SerializedName("Website")
-    var website: String? = null,
-    @SerializedName("Response")
-    var response: String? = null,
 ) : Parcelable

@@ -1,4 +1,4 @@
-package viewmodel
+package com.example.dummylistingapp.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -11,18 +11,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class ListFragmentViewModel: ViewModel() {
-    lateinit var itemList: MutableLiveData<Item>
+class ListFragmentViewModel : ViewModel() {
+    var itemList: MutableLiveData<Item?> = MutableLiveData()
 
-    init {
-        itemList = MutableLiveData()
-    }
-
-    fun getItemListObserver(): MutableLiveData<Item> {
+    fun getItemListObserver(): MutableLiveData<Item?> {
         return itemList
     }
 
-    fun makeApiCall(s: String){
+    fun makeApiCall(s: String) {
         val retroInstance = ApiServiceInstance.getRetroInstance().create(HTTPClient::class.java)
         retroInstance.getItems("a354b7ee", s)
             // an Observable emits its data in the thread where the subscription was declared
@@ -35,7 +31,7 @@ class ListFragmentViewModel: ViewModel() {
     }
 
     private fun getItemListObserverRx(): Observer<Item> {
-        return object :Observer<Item>{
+        return object : Observer<Item> {
             override fun onSubscribe(d: Disposable) {
                 // start showing progress indicator
             }
@@ -45,8 +41,8 @@ class ListFragmentViewModel: ViewModel() {
             }
 
             override fun onError(e: Throwable) {
-//                itemList.postValue(null)
-                Log.i("sueshan", "Error found")
+                itemList.postValue(null)
+                Log.d("onError ", e.localizedMessage)
             }
 
             override fun onComplete() {

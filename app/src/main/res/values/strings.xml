@@ -6,4 +6,18 @@
     <string name="image_url">Image URL</string>
     <string name="preview">Preview</string>
     <string name="save">Save</string>
+    <string name="ratings">Ratings:</string>
+
+    <string name="actor">Actors: %s</string>
+    <string name="year">Year: %s</string>
+    <string name="rated">Rated: %s</string>
+    <string name="released">Released: %s</string>
+    <string name="runtime">Runtime: %s</string>
+    <string name="genre">Genre: %s</string>
+    <string name="director">Director: %s</string>
+    <string name="writer">Writers: %s</string>
+    <string name="language">Language: %s</string>
+    <string name="country">Country: %s</string>
+    <string name="awards">Awards: %s</string>
+
 </resources>

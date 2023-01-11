@@ -6,11 +6,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiServiceInstance {
 
-    companion object{
-        val baseUrl = "http://www.omdbapi.com/"
+    companion object {
+        private val baseUrl = "https://www.omdbapi.com"
 
         // Build a Retrofit object
-        fun getRetroInstance(): Retrofit{
+        fun getRetroInstance(): Retrofit {
             return Retrofit.Builder()
                 .baseUrl(baseUrl)   // Set baseUrl
                 // Set default converter, then it will translate the JSON response automatically.
