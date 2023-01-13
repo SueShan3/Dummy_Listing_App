@@ -11,7 +11,6 @@ import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dummylistingapp.R
@@ -19,12 +18,13 @@ import com.example.dummylistingapp.adapter.RecyclerAdapter
 import com.example.dummylistingapp.databinding.FragmentListBinding
 import com.example.dummylistingapp.model.Item
 import com.example.dummylistingapp.viewmodel.ListFragmentViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 private const val cItem = "ITEM"
 
 class ListFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
 
-    private lateinit var viewModel: ListFragmentViewModel
+    private val viewModel: ListFragmentViewModel by viewModel()
     private lateinit var dataBinding: FragmentListBinding
     private lateinit var adapter: RecyclerAdapter
     private val itemList = ArrayList<Item>()
@@ -52,7 +52,6 @@ class ListFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-//                filter(p0.toString())
             }
         })
 
@@ -65,12 +64,10 @@ class ListFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
 
     private fun loadAPIData(text: String) {
         val filteredList = ArrayList<Item>()
-        viewModel = ViewModelProvider(this).get(ListFragmentViewModel::class.java)
         viewModel.getItemListObserver().observe(viewLifecycleOwner, Observer<Item?> {
 
             if (it != null) {
                 filteredList.clear()
-
                 filteredList.add(it)
 
                 if (filteredList.isEmpty()) {
@@ -82,25 +79,8 @@ class ListFragment : Fragment(), RecyclerAdapter.OnItemClickListener {
                 Toast.makeText(context, "Error in fetching data", Toast.LENGTH_SHORT).show()
             }
         })
-
         viewModel.makeApiCall(text)
     }
-
-//    private fun filter(text: String) {
-//        val filteredList = ArrayList<Item>()
-//
-//        for (item in itemList) {
-//            if (item.itemTitle!!.lowercase().contains(text.lowercase())) {
-//                filteredList.add(item)
-//            }
-//        }
-//
-//        if (filteredList.isEmpty()) {
-//            Toast.makeText(context, "No Item Found...", Toast.LENGTH_SHORT).show()
-//        } else {
-//            adapter.filterList(filteredList)
-//        }
-//    }
 
     override fun onItemClick(item: Item) {
         val bundle = bundleOf(cItem to item)

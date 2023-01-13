@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dummylistingapp.databinding.RatingListBinding
 import com.example.dummylistingapp.model.Ratings
 
-class RatingAdapter: RecyclerView.Adapter<RatingAdapter.ViewHolder>() {
+class RatingAdapter : RecyclerView.Adapter<RatingAdapter.ViewHolder>() {
 
     lateinit var ratingList: List<Ratings>
 

@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dummylistingapp.model.Item
-import com.example.dummylistingapp.network.ApiServiceInstance
-import com.example.dummylistingapp.network.HTTPClient
+import com.example.dummylistingapp.module.getHttpClient
+import com.example.dummylistingapp.module.getRetroInstance
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -19,8 +19,7 @@ class ListFragmentViewModel : ViewModel() {
     }
 
     fun makeApiCall(s: String) {
-        val retroInstance = ApiServiceInstance.getRetroInstance().create(HTTPClient::class.java)
-        retroInstance.getItems("a354b7ee", s)
+        getHttpClient(getRetroInstance()).getItems("a354b7ee", s)
             // an Observable emits its data in the thread where the subscription was declared
             // subscribeOn with RxJava's Scheduler to create an alternative thread
             .subscribeOn(Schedulers.io())
